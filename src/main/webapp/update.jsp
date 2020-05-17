@@ -1,3 +1,4 @@
+<%@page import="util.JDBCConnection"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="org.json.simple.JSONObject"%>
 <%@page import="java.sql.ResultSet"%>
@@ -17,12 +18,10 @@
 	
 	Connection con;
 	PreparedStatement ps;
-	ResultSet rs;
 	
 	JSONObject obj = new JSONObject();
 	
-	Class.forName("com.mysql.jdbc.Driver");
-	con = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentinfo","root","aditya8308307728");
+	con = JDBCConnection.getConnection();
 	ps = con.prepareStatement("update student set student_name=?,course=?,fee=? where id=?");
 	ps.setString(1, stud_name);
 	ps.setString(2, course);

@@ -1,3 +1,4 @@
+<%@page import="util.JDBCConnection"%>
 <%@page import="org.json.simple.JSONObject"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
@@ -13,8 +14,7 @@
 	PreparedStatement pst;
 	ResultSet rs;
 	
-	Class.forName("com.mysql.jdbc.Driver");
-	con = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentinfo","root","aditya8308307728");
+	con = JDBCConnection.getConnection();
 		
 	String id = request.getParameter("id");
 	pst = con.prepareStatement("select id,student_name,course,fee from student where id = ?");

@@ -1,3 +1,4 @@
+<%@page import="util.JDBCConnection"%>
 <%@page import="org.json.simple.JSONArray"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="org.json.simple.JSONObject"%>
@@ -19,8 +20,7 @@
 	ResultSet rs;
 	
 	JSONObject obj = new JSONObject();
-	Class.forName("com.mysql.jdbc.Driver");
-	con = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentinfo","root","aditya8308307728");
+	con = JDBCConnection.getConnection();
 	ps = con.prepareStatement("insert into student (student_name,course,fee)values(?,?,?)");
 	ps.setString(1, studName);
 	ps.setString(2, course);

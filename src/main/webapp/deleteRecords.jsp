@@ -1,3 +1,4 @@
+<%@page import="util.JDBCConnection"%>
 <%@page import="org.json.simple.JSONObject"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -14,8 +15,9 @@
 	PreparedStatement ps;
 	
 	JSONObject obj = new JSONObject();
-	Class.forName("com.mysql.jdbc.Driver");
-	con = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentinfo","root","aditya8308307728");
+	
+	con = JDBCConnection.getConnection();
+	
 	ps = con.prepareStatement("delete from student where id = ?");
 	ps.setString(1,stud_id);
 	ps.executeUpdate();

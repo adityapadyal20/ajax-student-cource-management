@@ -1,3 +1,4 @@
+<%@page import="util.JDBCConnection"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="org.json.simple.JSONObject"%>
@@ -14,9 +15,8 @@
     	PreparedStatement ps;
     	ResultSet rs;
     	
-    	Class.forName("com.mysql.jdbc.Driver");
-    	con = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentinfo","root","aditya8308307728");
-    	
+    	con = JDBCConnection.getConnection();
+   
     	String sql = "select * from student";
     	Statement statement = con.createStatement();
     	rs = statement.executeQuery(sql);
